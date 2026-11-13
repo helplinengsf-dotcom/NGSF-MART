@@ -1,0 +1,436 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b58">
+  <title>NGSF MART | Online Shopping</title>
+  <meta name="description" content="Shop Clothing, Electronics, Grocery, Beauty, Books and more at NGSF MART.">
+
+  <style>
+    :root {
+      --blue: #123b78;
+      --navy: #081b35;
+      --gold: #f5bd43;
+      --light: #f1f3f6;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--light);
+      color: #222;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .topbar {
+      background: var(--blue);
+      color: white;
+      padding: 13px 5%;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    .search {
+      display: flex;
+      flex: 1;
+      background: white;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .search input {
+      flex: 1;
+      border: 0;
+      outline: 0;
+      padding: 13px;
+      font-size: 15px;
+      min-width: 0;
+    }
+
+    .search button {
+      border: 0;
+      padding: 0 20px;
+      background: var(--gold);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .categories {
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 18px 10px;
+      overflow-x: auto;
+    }
+
+    .category {
+      text-align: center;
+      min-width: 95px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .category-icon {
+      font-size: 30px;
+      margin-bottom: 7px;
+    }
+
+    .banner {
+      margin: 16px auto;
+      width: 96%;
+      min-height: 220px;
+      border-radius: 10px;
+      padding: 40px;
+      background: linear-gradient(110deg, #071b37, #174b91);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .banner h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .banner p { font-size: 17px; }
+
+    .banner button {
+      margin-top: 20px;
+      background: var(--gold);
+      border: 0;
+      padding: 13px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .banner-art { font-size: 95px; }
+
+    .section {
+      background: white;
+      margin: 16px auto;
+      width: 96%;
+      padding: 22px;
+      border-radius: 8px;
+    }
+
+    .section h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: var(--navy);
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 18px;
+    }
+
+    .product {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      transition: .2s;
+      background: white;
+    }
+
+    .product:hover {
+      box-shadow: 0 4px 15px #0002;
+      transform: translateY(-3px);
+    }
+
+    .product-image {
+      height: 130px;
+      display: grid;
+      place-items: center;
+      background: #f5f6f8;
+      border-radius: 6px;
+      font-size: 55px;
+      margin-bottom: 12px;
+    }
+
+    .product h3 { font-size: 15px; margin-bottom: 8px; }
+
+    .price {
+      color: #16843c;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .product button {
+      background: var(--blue);
+      color: white;
+      border: 0;
+      padding: 10px;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .footer {
+      background: var(--navy);
+      color: white;
+      padding: 35px 6%;
+      margin-top: 20px;
+      text-align: center;
+      line-height: 2;
+    }
+
+    .footer strong { color: var(--gold); }
+
+    .mobile-nav { display: none; }
+
+    @media(max-width: 700px) {
+      .topbar {
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 12px;
+      }
+
+      .logo { font-size: 22px; }
+
+      .search {
+        order: 3;
+        flex-basis: 100%;
+      }
+
+      .nav-links {
+        margin-left: auto;
+        gap: 12px;
+        font-size: 13px;
+      }
+
+      .categories {
+        justify-content: flex-start;
+        gap: 18px;
+      }
+
+      .banner {
+        padding: 25px;
+        min-height: 180px;
+      }
+
+      .banner-art { font-size: 55px; }
+
+      .products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .section { padding: 14px; }
+
+      .mobile-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 20;
+        background: var(--navy);
+        color: white;
+        justify-content: space-around;
+        padding: 12px 5px;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      body { padding-bottom: 55px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <a class="logo" href="index.html">NGSF MART</a>
+
+  <div class="search">
+    <input id="searchInput" type="search"
+      placeholder="Search for products, brands and more...">
+    <button onclick="searchProducts()">Search</button>
+  </div>
+
+  <nav class="nav-links">
+    <a href="#account">Login</a>
+    <a href="#cart">🛒 Cart <span id="cartCount">0</span></a>
+  </nav>
+</header>
+
+<nav class="categories">
+  <a class="category" href="#products">
+    <div class="category-icon">👕</div>Fashion
+  </a>
+  <a class="category" href="#products">
+    <div class="category-icon">📱</div>Electronics
+  </a>
+  <a class="category" href="#products">
+    <div class="category-icon">🛒</div>Grocery
+  </a>
+  <a class="category" href="#products">
+    <div class="category-icon">💄</div>Beauty
+  </a>
+  <a class="category" href="#products">
+    <div class="category-icon">⭐</div>NGSF Products
+  </a>
+  <a class="category" href="#products">
+    <div class="category-icon">📚</div>Books
+  </a>
+  <a class="category" href="#products">
+    <div class="category-icon">🏠</div>Home & Kitchen
+  </a>
+  <a class="category" href="#products">
+    <div class="category-icon">🛍️</div>All Products
+  </a>
+</nav>
+
+<section class="banner">
+  <div>
+    <h1>Welcome to NGSF MART</h1>
+    <p>Everything you need, all in one place.</p>
+    <button onclick="document.getElementById('products').scrollIntoView()">
+      Shop Now
+    </button>
+  </div>
+  <div class="banner-art">🛍️</div>
+</section>
+
+<section class="section" id="products">
+  <h2>Featured Products</h2>
+  <div class="products" id="productGrid">
+    <p>Loading products...</p>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Why Shop With NGSF MART?</h2>
+  <div class="products">
+    <div class="product">🚚<h3>Delivery</h3><p>Delivery options at checkout</p></div>
+    <div class="product">🔒<h3>Secure Shopping</h3><p>Safe shopping experience</p></div>
+    <div class="product">💳<h3>Payment Options</h3><p>Payment options at checkout</p></div>
+    <div class="product">🤝<h3>Customer Support</h3><p>We're here to help</p></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <h2><strong>NGSF MART</strong></h2>
+  <p>Your Trusted Online Shopping Destination</p>
+  <p>Clothing • Electronics • Grocery • Beauty • Home</p>
+  <p>Designed by New Granthi Singh Federation</p>
+  <p>© <span id="year"></span> NGSF MART. All Rights Reserved.</p>
+</footer>
+
+<nav class="mobile-nav">
+  <a href="index.html">🏠<br>Home</a>
+  <a href="#products">🔍<br>Products</a>
+  <a href="#cart">🛒<br>Cart</a>
+  <a href="#account">👤<br>Account</a>
+</nav>
+
+<script>
+  const API = "https://ngsf-mart.helpline-ngsf.workers.dev";
+
+  let cartCount = 0;
+  let allProducts = [];
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  async function loadProducts() {
+    const grid = document.getElementById("productGrid");
+
+    try {
+      const response = await fetch(API + "/api/products");
+      if (!response.ok) throw new Error("API unavailable");
+
+      const data = await response.json();
+      allProducts = Array.isArray(data)
+        ? data
+        : (data.products || data.result || []);
+
+      renderProducts(allProducts);
+    } catch (error) {
+      grid.innerHTML =
+        "<p>Products will appear here once the store catalog is connected.</p>";
+    }
+  }
+
+  function renderProducts(products) {
+    const grid = document.getElementById("productGrid");
+
+    if (!products.length) {
+      grid.innerHTML = "<p>No products available yet.</p>";
+      return;
+    }
+
+    grid.innerHTML = products.map(product => `
+      <article class="product">
+        <div class="product-image">
+          ${product.image_url
+            ? `<img src="${escapeHTML(product.image_url)}" alt=""
+                 style="max-width:100%;max-height:120px;object-fit:contain">`
+            : "🛍️"}
+        </div>
+        <h3>${escapeHTML(product.name || "Product")}</h3>
+        <div class="price">
+          ₹${(Number(product.price_paise || 0) / 100).toFixed(2)}
+        </div>
+        <button onclick="addToCart()">Add to Cart</button>
+      </article>
+    `).join("");
+  }
+
+  function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, char => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;",
+      '"': "&quot;", "'": "&#39;"
+    })[char]);
+  }
+
+  function searchProducts() {
+    const query = document.getElementById("searchInput")
+      .value.trim().toLowerCase();
+
+    renderProducts(allProducts.filter(product =>
+      String(product.name || "").toLowerCase().includes(query)
+    ));
+  }
+
+  function addToCart() {
+    cartCount++;
+    document.getElementById("cartCount").textContent = cartCount;
+    alert("Product added to demo cart!");
+  }
+
+  loadProducts();
+</script>
+
+</body>
+</html>
